@@ -40,7 +40,35 @@ async def copy_media(client: Client, message: Message):
     
     temp_dir = TemporaryDirectory()
     filename = uuid.uuid1().hex
-    filepath = Path(temp_dir.name) / filename
+
+    file_ext = None
+    if message.photo:
+        file_ext = "jpg"
+    elif message.audio:
+        file_ext = message.audio.file_name.split('.')[-1] if message.audio.file_name else "mp3"
+    elif message.document:
+        file_ext = message.document.file_name.split('.')[-1] if message.document.file_name else "unknown"
+    elif message.sticker:
+        file_ext = "webp"
+    elif message.video:
+        file_ext = message.video.file_name.split('.')[-1] if message.video.file_name else "mp4"
+    elif message.animation:
+        file_ext = "mp4"
+    elif message.voice:
+        file_ext = "ogg"
+    elif message.video_note:
+        file_ext = "mp4"
+    elif message.contact:
+        file_ext = "vcard"
+    elif message.location or message.venue:
+        file_ext = "geojson"
+    elif message.poll:
+        file_ext = "poll"
+    else:
+        await message.reply_text("Unsupported media type.")
+        return
+    
+    filepath = Path(temp_dir.name) / f'{filename}.{file_ext}'
     
     status_msg = await message.reply_text("Status: Downloading...", reply_to_message_id=message.id)
     await message.download(str(filepath.resolve()))
