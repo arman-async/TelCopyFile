@@ -1,0 +1,9 @@
+services:
+    bot-bopy:
+        container_name: bot-bopy
+        image: bot-bopy:beta-1.0
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - ./.env/:/app/.env:ro
