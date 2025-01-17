@@ -79,7 +79,7 @@ async def copy_media(client: Client, message: Message):
     if filepath.exists():
         await status_msg.edit_text("Status: Uploading...")
         await client.send_chat_action(message.chat.id, ChatAction.UPLOAD_DOCUMENT)
-        caption = message.text if message.text else ""
+        caption = message.caption if message.caption else ""
         caption += STATIC_MESSAGE.suffix
         if message.video:
             await client.send_video(
