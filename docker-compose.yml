@@ -1,7 +1,7 @@
 services:
     bot-bopy:
         container_name: bot-bopy
-        image: bot-bopy:beta-1.0
+        image: bot-bopy:beta-1.2
         build:
             context: .
             dockerfile: Dockerfile

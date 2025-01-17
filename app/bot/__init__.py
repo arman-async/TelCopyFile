@@ -20,5 +20,4 @@ def get_bot(cnf: CNF_BOT = CNF_BOT()) -> Client:
         }
     )  # type: ignore
 
-
 __all__ = ["get_bot"]

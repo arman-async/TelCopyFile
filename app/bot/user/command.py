@@ -7,7 +7,7 @@ from pyrogram import filters
 from pyrogram.client import Client
 from pyrogram.enums import ChatAction
 from pyrogram.types import Message
-
+from app.logger import logger
 from app.config import STATIC_MESSAGE
 from app.opration import change_hash
 
@@ -18,21 +18,26 @@ client = get_bot()
 
 @client.on_message(filters.command("start"))
 async def start(client: Client, message: Message):
+    logger.info(f"Call - /Start From : {message.from_user.id}")
     await message.reply_text(STATIC_MESSAGE.start)
 
 
 @client.on_message(filters.command("help"))
 async def help(client: Client, message: Message):
+    logger.info(f"Call - /Help From : {message.from_user.id}")
     await message.reply_text(STATIC_MESSAGE.help)
 
 
 @client.on_message(filters.command("ping"))
 async def ping(client: Client, message: Message):
+    logger.info(f"Call - /Ping From : {message.from_user.id}")
     await message.reply_text(STATIC_MESSAGE.ping)
 
 
 @client.on_message(filters.media)
 async def copy_media(client: Client, message: Message):
+    logger.info(f"Call - /Copy Media From : {message.from_user.id}")
+    
     temp_dir = TemporaryDirectory()
     filename = uuid.uuid1().hex
     filepath = Path(temp_dir.name) / filename
