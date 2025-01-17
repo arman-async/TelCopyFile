@@ -81,11 +81,19 @@ async def copy_media(client: Client, message: Message):
         await client.send_chat_action(message.chat.id, ChatAction.UPLOAD_DOCUMENT)
         caption = message.text if message.text else ""
         caption += STATIC_MESSAGE.suffix
-        await client.send_document(
-            message.chat.id,
-            str(filepath.resolve()),
-            caption=caption,
-        )
+        if message.video:
+            await client.send_video(
+                message.chat.id,
+                str(filepath.resolve()),
+                caption=caption,
+            )
+        else:
+            await client.send_document(
+                message.chat.id,
+                str(filepath.resolve()),
+                caption=caption,
+            )
+        
     else:
         await status_msg.edit_text("File Not Found - again try again.")
     
