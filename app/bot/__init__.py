@@ -13,11 +13,11 @@ def get_bot(cnf: CNF_BOT = CNF_BOT()) -> Client:
         cnf.API_ID,
         cnf.API_HASH, # type: ignore
         bot_token=cnf.BOT_TOKEN,  # type: ignore
-         proxy = {
-            "scheme": "socks5",  # "socks4", "socks5" and "http" are supported
-            "hostname": "localhost",
-            "port": 9092
-        }
+        #  proxy = {
+        #     "scheme": "socks5",  # "socks4", "socks5" and "http" are supported
+        #     "hostname": "localhost",
+        #     "port": 9092
+        # }
     )  # type: ignore
 
 __all__ = ["get_bot"]
