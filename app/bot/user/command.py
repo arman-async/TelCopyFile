@@ -85,12 +85,14 @@ async def copy_media(client: Client, message: Message):
             await client.send_video(
                 message.chat.id,
                 str(filepath.resolve()),
+                reply_to_message_id=message.id,
                 caption=caption,
             )
         else:
             await client.send_document(
                 message.chat.id,
                 str(filepath.resolve()),
+                reply_to_message_id=message.id,
                 caption=caption,
             )
         
