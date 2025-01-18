@@ -9,6 +9,7 @@ class BOT:
     BOT_TOKEN = getenv("BOT_TOKEN")
     OWNER_ID = int(getenv("OWNER_ID")) # type: ignore
     SESSION_NAME = getenv("SESSION_NAME")
+    WORKERS = int(getenv("WORKERS", 256))
 
 
 class STATIC_MESSAGE:
